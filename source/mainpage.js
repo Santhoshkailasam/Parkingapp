@@ -8,7 +8,8 @@ const Mainpage = () => {
     Radley: require("../assets/Radley-Regular.ttf"),
     Pompiere: require("../assets/Pompiere-Regular.ttf"),
   });
-
+  // Render component only when fonts are loaded
+  if (!fontsLoaded) return null; // Avoid rendering until fonts are loaded
   return (
     <View style={{ backgroundColor: "black", flex: 1 }}>
       {/* Image */}
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   },
   Mainheader: {
     color: "#EAD4B4AB",
-    fontSize: 42,
+    fontSize: 40,
     fontFamily: "Radley",
   },
 });
