@@ -1,8 +1,14 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useFonts } from "expo-font";
-
+import { useNavigation } from "@react-navigation/native";
 const Mainpage = () => {
+  //Navigation
+   const navigation=useNavigation();
+  const mapscreen=()=>{
+    navigation.navigate("map")
+   
+  }
   // Font loading
   const [fontsLoaded] = useFonts({
     Radley: require("../assets/Radley-Regular.ttf"),
@@ -30,7 +36,7 @@ const Mainpage = () => {
       </View>
 
       {/* Button */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={mapscreen} >
         <Text style={{ fontSize: 35, fontFamily: "Radley" }}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 55,
     borderRadius: 50,
-    marginTop: 180,
+    marginTop: 130,
     alignSelf: "center", // Center button horizontally
     justifyContent: "center",
     alignItems: "center", // Center text inside the button
