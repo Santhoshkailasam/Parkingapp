@@ -1,6 +1,7 @@
 import Mainpage from './source/mainpage';
 import { StatusBar } from 'react-native';
 import Mapscreen from './source/mapscreen';
+import Headertextcomponent from './component/heading_for_page';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function App() {
@@ -9,9 +10,9 @@ export default function App() {
     <>
       <StatusBar hidden={false} />
       <NavigationContainer>
-        <Stack.Navigator >
-        <Stack.Screen name='Main' component={Mainpage} options={{headerShown:false,}}></Stack.Screen>
-      <Stack.Screen name='map' component={Mapscreen} options={{headerShown:false}}></Stack.Screen>
+        <Stack.Navigator screenOptions={{headerShown:false}} >
+        <Stack.Screen name='Main' component={Mainpage}></Stack.Screen>
+      <Stack.Screen name='map' component={Mapscreen} ></Stack.Screen>
       </Stack.Navigator>
       </NavigationContainer>
     </>
