@@ -1,7 +1,7 @@
 import React from "react";
 import { Text,View,StyleSheet,TouchableOpacity,Image} from "react-native";
 import { useFonts } from "expo-font";
-const Bookingcomponent = () =>{
+const Bookingcomponent = (props) =>{
   //Import Require Fonts
     const [fontsLoaded] = useFonts({
         Radley: require("../assets/Radley-Regular.ttf"),
@@ -17,13 +17,14 @@ const Bookingcomponent = () =>{
               {/*This is a header image box */}
                <View style={styles.headerbox}>
                 <View style={{flexDirection:"row"}}>
-                  <Image style={styles.image} source={require("../assets/image/tcscarparking.jpeg")}></Image>
+                  <Image style={styles.image} source={props.image}></Image>
                   <Text style={
                     {color:"white",
                     fontSize:19,
                     fontFamily:"InknutAntiqua",
-                    marginLeft:15
-                     }}>Tech Car Parking</Text>
+                    marginLeft:15,
+                    paddingTop:9,
+                     }}>{props.Text}</Text>
                 </View>
                </View>
               <View style={{flexDirection:"row"}}>
@@ -48,25 +49,26 @@ const Bookingcomponent = () =>{
 }
 const styles=StyleSheet.create({ 
   image:{
-    width:50,
-    height:50,
+    width:60,
+    height:60,
     borderRadius:50,
+    marginTop:5,
   },
   headerbox:{
-    backgroundColor:"#AFACAC",
+    backgroundColor:"rgba(175, 172, 172, 0.29)",
     width:320,
     height:70,
     borderRadius:50,
-    paddingLeft:20,
-    paddingTop:10,
+    paddingLeft:15,
   },
   bookingbox:{
-    backgroundColor:"#D6D1CA",
-    borderRadius:50,
+    backgroundColor:"rgba(214, 209, 202, 0.35)",
+    borderRadius:30,
     width:320,
     height:150,
     marginLeft:20,
-    marginTop:10
+    marginTop:10,
+    opacity:0.90
   },
   button:{
     backgroundColor:"#EAD4B4",
@@ -80,9 +82,3 @@ const styles=StyleSheet.create({
   }
 })
 export default Bookingcomponent;
-//#AFACAC
-//#EAD4B4
-//amountand 2.km-sedan sc
-//text header-inknut Antiqua
-//distance and book-radly
-//parking-song myung
