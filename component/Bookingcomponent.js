@@ -20,10 +20,10 @@ const Bookingcomponent = (props) =>{
                   <Image style={styles.image} source={props.image}></Image>
                   <Text style={
                     {color:"white",
-                    fontSize:19,
+                    fontSize:15,
                     fontFamily:"InknutAntiqua",
                     marginLeft:15,
-                    paddingTop:9,
+                    paddingTop:12,
                      }}>{props.Text}</Text>
                 </View>
                </View>

@@ -1,8 +1,12 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity,Text,ActivityIndicator} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Dimensions } from "react-native";
 import { useFonts } from "expo-font";
 import Back from "../assets/icon/back.svg";
-import Search from "../assets/icon/search.svg"
+import Search from "../assets/icon/search.svg";
+
+// Get screen dimensions
+const { width, height } = Dimensions.get("window");
+
 const Headertextcomponent = () => {
   const [fontsLoaded] = useFonts({
     Radley: require("../assets/Radley-Regular.ttf"),
@@ -18,20 +22,21 @@ const Headertextcomponent = () => {
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
-      <View style={{flexDirection:"row"}}>
+      <View style={{ flexDirection: "row" }}>
         <TouchableOpacity style={styles.round}>
-          <Back></Back>
-       </TouchableOpacity>
-       <Text style={styles.text}>Parkings Around you</Text>
-     </View>
-     <View style={styles.searchbox}>
-     <View style={{flexDirection:"row"}}>
-      <Search style={styles.searchsvg}></Search>
-      <Text style={{color:"#D0CBCB70",marginLeft:50,fontSize:20}}>Search parking</Text>
-     </View>
-     </View>
+          <Back />
+        </TouchableOpacity>
+        <Text style={styles.text}>Parkings Around you</Text>
+      </View>
+      <View style={styles.searchbox}>
+        <View style={{ flexDirection: "row" }}>
+          <Search style={styles.searchsvg} />
+          <Text style={styles.searchText}>Search parking</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -44,32 +49,37 @@ const styles = StyleSheet.create({
     backgroundColor: "#EAD4B4AB",
     borderRadius: 50,
     padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width:40,
-    height:40,
-    marginTop:5,
+    justifyContent: "center",
+    alignItems: "center",
+    width: width * 0.1, // 10% of the screen width
+    height: width * 0.1, // 10% of the screen width (same as width for a circular button)
+    marginTop: 5,
   },
-  text:{
-       fontSize:20,
-       marginLeft:40,
-       marginTop:10,
-       fontWeight:"bold",
-       color:"white",
-       fontFamily:"Songmyung"
+  text: {
+    fontSize: width * 0.05, // 5% of the screen width
+    marginLeft: width * 0.1, // Margin as 10% of the screen width
+    marginTop: 10,
+    fontWeight: "bold",
+    color: "white",
+    fontFamily: "Songmyung",
   },
-  searchbox:{
-    backgroundColor:"#D6D1CA52",
-    height:50,
-    width:310,
-    borderRadius:50,
-    marginLeft:13,
-    marginTop:30,
-    paddingTop:10
+  searchbox: {
+    backgroundColor: "#D6D1CA52",
+    height: height * 0.07, // 7% of the screen height
+    width: width * 0.84, // 90% of the screen width
+    borderRadius: 50,
+    marginLeft: 15,
+    marginTop: 30,
+    paddingTop: 10,
   },
-  searchsvg:{
-     marginLeft:20
-  }
+  searchsvg: {
+    marginLeft: width * 0.05, // 5% of the screen width
+  },
+  searchText: {
+    color: "#D0CBCB70",
+    marginLeft: width * 0.1, // 10% of the screen width
+    fontSize: width * 0.05, // 5% of the screen width
+  },
 });
 
 export default Headertextcomponent;
