@@ -15,8 +15,8 @@ const Mainpage = () => {
 
   // Load fonts
   const [fontsLoaded] = useFonts({
-    Radley: require("../assets/Radley-Regular.ttf"),
-    Pompiere: require("../assets/Pompiere-Regular.ttf"),
+    Radley: require("../fonts/Radley-Regular.ttf"),
+    Pompiere: require("../fonts/Pompiere-Regular.ttf"),
   });
 
   // If fonts are not loaded, show a loading spinner

@@ -10,9 +10,9 @@ const { width, height } = Dimensions.get("window");
 
 const Headertextcomponent = () => {
   const [fontsLoaded] = useFonts({
-    Radley: require("../assets/Radley-Regular.ttf"),
-    Pompiere: require("../assets/Pompiere-Regular.ttf"),
-    Songmyung: require("../assets/SongMyung-Regular.ttf"),
+    Radley: require("../fonts/Radley-Regular.ttf"),
+    Pompiere: require("../fonts/Pompiere-Regular.ttf"),
+    Songmyung: require("../fonts/SongMyung-Regular.ttf"),
   });
 
   // If fonts are not loaded, show a loading spinner

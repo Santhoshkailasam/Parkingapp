@@ -4,11 +4,11 @@ import { useFonts } from "expo-font";
 const Bookingcomponent = (props) =>{
   //Import Require Fonts
     const [fontsLoaded] = useFonts({
-        Radley: require("../assets/Radley-Regular.ttf"),
-        Pompiere: require("../assets/Pompiere-Regular.ttf"),
-        Songmyung: require("../assets/SongMyung-Regular.ttf"),
-        Sedansc: require("../assets/SedanSC-Regular.ttf"),
-        InknutAntiqua: require("../assets/InknutAntiqua-Regular.ttf")
+        Radley: require("../fonts/Radley-Regular.ttf"),
+        Pompiere: require("../fonts/Pompiere-Regular.ttf"),
+        Songmyung: require("../fonts/SongMyung-Regular.ttf"),
+        Sedansc: require("../fonts/SedanSC-Regular.ttf"),
+        InknutAntiqua: require("../fonts/InknutAntiqua-Regular.ttf")
       });
       return(
         <SafeAreaView>
