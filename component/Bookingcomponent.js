@@ -1,5 +1,5 @@
 import React from "react";
-import { Text,View,StyleSheet,TouchableOpacity,Image} from "react-native";
+import { Text,View,StyleSheet,TouchableOpacity,Image,SafeAreaView} from "react-native";
 import { useFonts } from "expo-font";
 const Bookingcomponent = (props) =>{
   //Import Require Fonts
@@ -11,7 +11,7 @@ const Bookingcomponent = (props) =>{
         InknutAntiqua: require("../assets/InknutAntiqua-Regular.ttf")
       });
       return(
-        <View>
+        <SafeAreaView>
           {/*This is a booking box */}
             <View style={styles.bookingbox}>
               {/*This is a header image box */}
@@ -44,7 +44,7 @@ const Bookingcomponent = (props) =>{
                   </TouchableOpacity>
                 </View>
            </View>
-        </View>
+        </SafeAreaView>
       )
 }
 const styles=StyleSheet.create({ 

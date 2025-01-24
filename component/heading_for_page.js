@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Dimensions } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Dimensions,SafeAreaView} from "react-native";
 import { useFonts } from "expo-font";
 import Back from "../assets/icon/back.svg";
 import Search from "../assets/icon/search.svg";
+import { TextInput } from "react-native";
 
 // Get screen dimensions
 const { width, height } = Dimensions.get("window");
@@ -24,7 +25,7 @@ const Headertextcomponent = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity style={styles.round}>
           <Back />
@@ -34,10 +35,12 @@ const Headertextcomponent = () => {
       <View style={styles.searchbox}>
         <View style={{ flexDirection: "row" }}>
           <Search style={styles.searchsvg} />
-          <Text style={styles.searchText}>Search parking</Text>
+          <TextInput style={styles.searchText} placeholder="Search Parking"
+          placeholderTextColor={"#D0CBCB70"}
+          selectionColor={"#D0CBCB70"}></TextInput>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -70,15 +73,20 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginLeft: 15,
     marginTop: 30,
-    paddingTop: 10,
+    
   },
   searchsvg: {
-    marginLeft: width * 0.05, // 5% of the screen width
+    marginLeft: width * 0.05, // 5% of the screen width,
+    marginTop:10
   },
   searchText: {
-    color: "#D0CBCB70",
     marginLeft: width * 0.1, // 10% of the screen width
     fontSize: width * 0.05, // 5% of the screen width
+    height: height * 0.07, // 7% of the screen height
+    width: width * 0.84,
+    borderRadius: 50,
+    
+    
   },
 });
 

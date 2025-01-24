@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Alert, Platform, View, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Alert, Platform, View, PermissionsAndroid,SafeAreaView } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 
@@ -52,7 +52,7 @@ const Mapscreen = () => {
   navigation.navigate("Main")
  }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
@@ -79,7 +79,7 @@ const Mapscreen = () => {
           />
         )}
       </MapView>
-    </View>
+    </SafeAreaView>
   );
 };
 

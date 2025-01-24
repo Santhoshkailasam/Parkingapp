@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, ActivityIndicator } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, ActivityIndicator,SafeAreaView} from "react-native";
 import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 
@@ -29,7 +29,7 @@ const Mainpage = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Image */}
       <Image
         source={require("../assets/image/enterscreenimage.png")}
@@ -47,12 +47,11 @@ const Mainpage = () => {
         <Text style={styles.subheader}>location, Pre-book your parking</Text>
         <Text style={styles.subheader}>space and pay via online mode.</Text>
       </View>
-
       {/* Button */}
       <TouchableOpacity style={styles.button} onPress={mapscreen}>
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     position: "absolute",
-    bottom: height * 0.2,  // Adjusts the position of the text container
+    bottom: height * 0.13,  // Adjusts the position of the text container
     alignSelf: "center",
     alignItems: "center",
   },
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     height: 55,
     borderRadius: 50,
     position: "absolute",
-    bottom: 50,  // Adjust this value to control the vertical position of the button
+    bottom: 20,  // Adjust this value to control the vertical position of the button
     alignSelf: "center",  // Centers the button horizontally
     justifyContent: "center",
     alignItems: "center",
