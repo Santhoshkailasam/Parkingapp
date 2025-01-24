@@ -112,14 +112,10 @@ const styles=StyleSheet.create({
         flex: 1,
         height: 1,
         backgroundColor: "white",
+        marginLeft:5
       },
       separatorText: {
-        marginHorizontal: 10,
-        color: "#FFF",
-        fontSize: 14,
-      },
-      separatorText: {
-        marginLeft: 10,
+        marginLeft:5,
         color: "#FFF",
         fontSize: 14,
       },
