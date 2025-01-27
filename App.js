@@ -8,31 +8,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NearbyParking from './source/parkingsaroundyou';
 import FooterComponent from './component/footercomponent';
-import Loginpage from './source/Loginscreen';
-
+import Registerscreen from './source/Registerscreen';
+import Loginscreen from './source/Loginscreen';
+import ProfileScreen from './source/ProfileScreen';
 export default function App() {
-  const [aspectRatio, setAspectRatio] = useState(Dimensions.get('window').height / Dimensions.get('window').width);
-
-  useEffect(() => {
-    const onChange = ({ window }) => {
-      setAspectRatio(window.height / window.width);
-    };
-
-    Dimensions.addEventListener('change', onChange);
-    return () => Dimensions.removeEventListener('change', onChange);
-  }, []);
-
   const Stack = createNativeStackNavigator();
-
   return (
     <>
       <StatusBar hidden={false} />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Loginscreen" component={Loginpage}></Stack.Screen>
-          <Stack.Screen name='Nearbyparking' component={(props) => <NearbyParking {...props} aspectRatio={aspectRatio} />} />
-          <Stack.Screen name='Main' component={(props) => <Mainpage {...props} aspectRatio={aspectRatio} />} />
-          <Stack.Screen name='map' component={(props) => <Mapscreen {...props} aspectRatio={aspectRatio} />} />
+          <Stack.Screen name="Registerscreen" component={ProfileScreen }></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </>

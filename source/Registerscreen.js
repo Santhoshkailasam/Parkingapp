@@ -1,10 +1,9 @@
-
 import React from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,SafeAreaView,ActivityIndicator} from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,SafeAreaView,ActivityIndicator,TouchableHighlight} from "react-native";
 import { useFonts } from "expo-font";
 import Goggleicon from "../assets/icon/google.svg"
 import Appleicon from "../assets/icon/appleicon.svg"
-const Loginscreen=()=>{
+const Registerscreen=()=>{
     const [fontsLoaded] = useFonts({
         Reggae: require("../fonts/ReggaeOne-Regular.ttf"),
         Rakkas: require("../fonts/Rakkas-Regular.ttf")
@@ -22,21 +21,22 @@ const Loginscreen=()=>{
  return(
     <SafeAreaView style={styles.maincontainer}>
         <View>
-            <Text style={styles.title}>Welcome Back</Text>
+            <Text style={styles.title}>Create Account</Text>
             <View style={styles.container}>
+            <Text style={styles.header}>Name:</Text>
+            <TextInput placeholder="Name" selectionColor="grey" style={styles.textinput}/>
             <Text style={styles.header}>Email:</Text>
             <TextInput placeholder="Email" selectionColor="grey" style={styles.textinput}/>
             <Text style={styles.header}>Password:</Text>
-            <TextInput placeholder="Password" selectionColor="grey"  secureTextEntry style={styles.textinput}/>
+            <TextInput placeholder="Password" secureTextEntry selectionColor="grey" style={styles.textinput}/>
+            <Text style={styles.header}>Confirmpassword:</Text>
+            <TextInput placeholder="Confirm Password" secureTextEntry selectionColor="grey" style={styles.textinput}/>
             </View>
             <TouchableOpacity style={styles.btn}>
                 <Text style={{ color: "#3F372E",fontSize: 16,fontFamily:"Reggae"}}>Sign up</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{marginLeft:110,marginBottom:20}} >
-                <Text style={{color:"white",fontSize:17,}}>Forget Password</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginLeft:90,marginBottom:10}}>
-                <Text style={{color:"white",fontSize:17}}>Don't Have an Account ?</Text>
+            <TouchableOpacity style={{marginLeft:80,marginTop:10}}>
+                <Text style={{color:"white",fontSize:17}}>Already Have an Account ?</Text>
             </TouchableOpacity>
             <View style={styles.separatorContainer}>
                <View style={styles.separatorLine} />
@@ -68,12 +68,11 @@ const styles=StyleSheet.create({
         fontSize: 24,
         color: "#FFF",
         fontWeight: "bold",
-        marginTop:20,
-        marginBottom:20,
-        textAlign:"center"
+        marginLeft:100,
+        marginTop:5,
       },
       container:{
-            marginTop:30
+            marginTop:20
       },
       header:{
         color:"white",
@@ -88,7 +87,7 @@ const styles=StyleSheet.create({
         backgroundColor: "#766E60",
         borderRadius: 25,
         paddingLeft: 15,
-        marginBottom: 40,
+        marginBottom: 20,
         color: "#FFF",
         fontSize: 16,
         marginLeft:50,
@@ -104,9 +103,7 @@ const styles=StyleSheet.create({
         borderRadius: 25,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft:100,
-        marginTop:10,
-        marginBottom:30
+        marginLeft:100
       },
       separatorContainer: {
         flexDirection: "row",
@@ -142,4 +139,4 @@ const styles=StyleSheet.create({
         marginLeft:10
       },
 })
-export default Loginscreen;
+export default Registerscreen;
