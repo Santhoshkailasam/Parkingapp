@@ -18,13 +18,7 @@ const Bookingcomponent = (props) =>{
                <View style={styles.headerbox}>
                 <View style={{flexDirection:"row"}}>
                   <Image style={styles.image} source={props.image}></Image>
-                  <Text style={
-                    {color:"white",
-                    fontSize:15,
-                    fontFamily:"InknutAntiqua",
-                    marginLeft:15,
-                    paddingTop:12,
-                     }}>{props.Text}</Text>
+                  <Text style={ {color:"white",fontSize:14,fontFamily:"InknutAntiqua",marginLeft:15,paddingTop:12,}}>{props.Text}</Text>
                 </View>
                </View>
               <View style={{flexDirection:"row"}}>

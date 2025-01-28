@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Alert, Platform, View, PermissionsAndroid,SafeAreaView } from 'react-native';
+import { StyleSheet, Alert, Platform, View, PermissionsAndroid,SafeAreaView,TouchableOpacity} from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
-
+import Back from "../assets/icon/back.svg";
 const Mapscreen = () => {
   // Use for navigation
   const navigation = useNavigation();
@@ -53,6 +53,9 @@ const Mapscreen = () => {
  }
   return (
     <SafeAreaView style={styles.container}>
+       <TouchableOpacity style={styles.round}>
+          <Back />
+        </TouchableOpacity>
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
@@ -89,6 +92,17 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject, // Make the map fill the entire container
+  },
+  round: {
+    backgroundColor: "#EAD4B4AB",
+    borderRadius: 50,
+    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    width: 50,
+    height: 50,
+    marginTop: 20,
+    marginLeft: 20,
   },
 });
 

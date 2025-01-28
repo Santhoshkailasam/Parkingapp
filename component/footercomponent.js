@@ -5,8 +5,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Bookmark from "../assets/icon/Bookmark.svg";
 import Parking from "../assets/icon/Parking Sign.svg";
 import Home from "../assets/icon/Home 2.svg";
-import Mainpage from "../source/mainpage";
 import NearbyParking from "../source/parkingsaroundyou";
+import ProfileScreen from "../source/ProfileScreen";
+import Mapscreen from "../source/mapscreen";
 
 const Tab = createBottomTabNavigator();
 const {width,height}=Dimensions.get("window")
@@ -18,10 +19,10 @@ const FooterComponent = () => {
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
             return <Home width={size} height={size} fill={color} />;
-          } else if (route.name === "Search") {
-            return <Bookmark width={size} height={size} fill={color} />;
           } else if (route.name === "Parking") {
             return <Parking width={size} height={size} fill={color} />;
+          } else if (route.name === "Profile") {
+            return <Bookmark width={size} height={size} fill={color} />;
           }
         },
         tabBarLabelStyle:styles.tabBarLabel,
@@ -30,9 +31,9 @@ const FooterComponent = () => {
         headerShown: false, // Hide the header
       })}
     >
-      <Tab.Screen name="Home" component={Mainpage} />
-      <Tab.Screen name="Search" component={NearbyParking} />
-      <Tab.Screen name="Parking" component={NearbyParking} />
+      <Tab.Screen name="Home" component={NearbyParking} />
+      <Tab.Screen name="Parking" component={Mapscreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 };

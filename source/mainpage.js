@@ -10,7 +10,7 @@ const Mainpage = () => {
   // Navigation function to go to Map screen
   const navigation = useNavigation();
   const mapscreen = () => {
-    navigation.navigate("map");
+    navigation.navigate("Loginpage");
   };
 
   // Load fonts

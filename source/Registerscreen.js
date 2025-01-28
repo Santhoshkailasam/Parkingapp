@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity,SafeAreaView,Activi
 import { useFonts } from "expo-font";
 import Goggleicon from "../assets/icon/google.svg"
 import Appleicon from "../assets/icon/appleicon.svg"
+import { useNavigation } from "@react-navigation/native";
 const Registerscreen=()=>{
     const [fontsLoaded] = useFonts({
         Reggae: require("../fonts/ReggaeOne-Regular.ttf"),
@@ -17,6 +18,11 @@ const Registerscreen=()=>{
           </View>
         );
       }
+      //Navigation to Loginscreen
+    const navigation=useNavigation();
+    const Loginscreen=()=>{
+      navigation.navigate("Loginpage")
+    }
     
  return(
     <SafeAreaView style={styles.maincontainer}>
@@ -35,7 +41,7 @@ const Registerscreen=()=>{
             <TouchableOpacity style={styles.btn}>
                 <Text style={{ color: "#3F372E",fontSize: 16,fontFamily:"Reggae"}}>Sign up</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{marginLeft:80,marginTop:10}}>
+            <TouchableOpacity style={{marginLeft:80,marginTop:10}} onPress={Loginscreen}>
                 <Text style={{color:"white",fontSize:17}}>Already Have an Account ?</Text>
             </TouchableOpacity>
             <View style={styles.separatorContainer}>

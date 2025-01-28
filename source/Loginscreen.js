@@ -1,9 +1,9 @@
-
 import React from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity,SafeAreaView,ActivityIndicator} from "react-native";
 import { useFonts } from "expo-font";
 import Goggleicon from "../assets/icon/google.svg"
 import Appleicon from "../assets/icon/appleicon.svg"
+import { useNavigation } from "@react-navigation/native";
 const Loginscreen=()=>{
     const [fontsLoaded] = useFonts({
         Reggae: require("../fonts/ReggaeOne-Regular.ttf"),
@@ -18,6 +18,15 @@ const Loginscreen=()=>{
           </View>
         );
       }
+    //Navigation to Registerscreen
+    const navigation=useNavigation();
+    const Registerscreen=()=>{
+      navigation.navigate("Registerpage")
+    }
+    //Navigation to Homepage
+    const Homescreen=()=>{
+      navigation.navigate("Footerpage")
+    }
     
  return(
     <SafeAreaView style={styles.maincontainer}>
@@ -29,13 +38,13 @@ const Loginscreen=()=>{
             <Text style={styles.header}>Password:</Text>
             <TextInput placeholder="Password" selectionColor="grey"  secureTextEntry style={styles.textinput}/>
             </View>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn}  onPress={Homescreen}>
                 <Text style={{ color: "#3F372E",fontSize: 16,fontFamily:"Reggae"}}>Sign up</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{marginLeft:110,marginBottom:20}} >
                 <Text style={{color:"white",fontSize:17,}}>Forget Password</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{marginLeft:90,marginBottom:10}}>
+            <TouchableOpacity style={{marginLeft:90,marginBottom:10}} onPress={Registerscreen}>
                 <Text style={{color:"white",fontSize:17}}>Don't Have an Account ?</Text>
             </TouchableOpacity>
             <View style={styles.separatorContainer}>

@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Dimensions,SafeAreaView} from "react-native";
 import { useFonts } from "expo-font";
-import Back from "../assets/icon/back.svg";
 import Search from "../assets/icon/search.svg";
 import { TextInput } from "react-native";
 
@@ -27,9 +26,6 @@ const Headertextcomponent = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity style={styles.round}>
-          <Back />
-        </TouchableOpacity>
         <Text style={styles.text}>Parkings Around you</Text>
       </View>
       <View style={styles.searchbox}>
@@ -48,16 +44,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
-  round: {
-    backgroundColor: "#EAD4B4AB",
-    borderRadius: 50,
-    padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    width: width * 0.1, // 10% of the screen width
-    height: width * 0.1, // 10% of the screen width (same as width for a circular button)
-    marginTop: 5,
-  },
   text: {
     fontSize: width * 0.05, // 5% of the screen width
     marginLeft: width * 0.1, // Margin as 10% of the screen width
@@ -65,6 +51,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     fontFamily: "Songmyung",
+    marginLeft:75
   },
   searchbox: {
     backgroundColor: "#D6D1CA52",
