@@ -36,7 +36,7 @@ const ProfileScreen = () => {
   return (
     <SafeAreaView style={styles.maincontainer}>
       <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity style={styles.round}>
+        <TouchableOpacity style={styles.round} onPress={()=>navigation.goBack()}>
           <Back />
         </TouchableOpacity>
         <Text style={styles.header}>My profile</Text>

@@ -33,11 +33,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen 
-            name="Nearbyparking"  
-            component={(props) => <Mainpage {...props} aspectRatio={aspectRatio} />} 
-          />
-          <Stack.Screen 
-            name="Main"  
+            name="Mainpage"  
             component={(props) => <Mainpage {...props} aspectRatio={aspectRatio} />} 
           />
           <Stack.Screen 
