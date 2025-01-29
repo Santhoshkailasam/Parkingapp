@@ -6,8 +6,11 @@ import { useFonts } from 'expo-font';
 import RightTriangle from "../assets/icon/right triagle.svg"; // Correct the name of your import to match the actual file
 import Logout from "../assets/icon/Logout.svg"
 import { useNavigation } from '@react-navigation/native';
-import Payment from './Payments';
+import auth from '../firebase service/firebaseAuth';
+import { signOut } from 'firebase/auth';
+import { Alert } from 'react-native';
 const ProfileScreen = () => {
+  const user = auth.currentUser;
   //use navigation 
   const navigation=useNavigation();
 
@@ -42,9 +45,15 @@ const ProfileScreen = () => {
         <Text style={styles.header}>My profile</Text>
       </View>
       <View style={styles.profileimg}></View>
-      <Text style={{ color: "white", textAlign: "center", fontFamily: "Reggae", marginTop: 10 }}>
-        abinesh123@gmail.com
-      </Text>
+      {user ? (
+        <>
+          <Text style={{ color: "white", textAlign: "center", fontFamily: "Reggae", marginTop: 10 }}>{user.displayName}</Text>
+          <Text style={{ color: "white", textAlign: "center", fontFamily: "Reggae", marginTop: 10 }}>{user.email}</Text>
+        </>
+      ) : (
+        <Text style={styles.info}>User not logged in</Text>
+      )}
+      {/*  */}
       <View style={styles.switchContainer}>
         <Switch
           trackColor={{ false: '#767577', true: '#81b0ff' }}  // Track color
@@ -76,7 +85,24 @@ const ProfileScreen = () => {
           <RightTriangle width={24} height={24} />
         </TouchableOpacity>
       ))}
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn}   onPress={() => {
+      signOut(auth)
+       .then(() => {
+          Alert.alert(
+            "Logout Successful",  // Title
+            "You have been logged out.",  // Message
+          [
+            { 
+              text: "OK", 
+              onPress: () => navigation.replace("Loginpage") // Navigate after user clicks OK
+            }
+          ]
+        );
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  }}>
         <View style={{flexDirection:"row"}}>
         <Logout style={{marginLeft:10}} />
         <Text style={{color:"white",fontFamily:"Reggae",marginLeft:5}}>Logout</Text>

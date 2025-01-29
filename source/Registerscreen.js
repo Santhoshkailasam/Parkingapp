@@ -1,46 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, SafeAreaView, ActivityIndicator, Alert } from "react-native";
 import { useFonts } from "expo-font";
 import Goggleicon from "../assets/icon/google.svg";
 import Appleicon from "../assets/icon/appleicon.svg";
 import { useNavigation } from "@react-navigation/native";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
 import auth from "../firebase service/firebaseAuth";
 
 const Registerscreen = () => {
-  // Register
+  // Register state
+  const [name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Error, setError] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState(""); // For confirm password
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State to toggle confirm password visibility
+  const [user, setUser] = useState(null);
 
-  // Handler
-  const Handler = () => {
+  // Authentication listener to update user state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Navigation hook
+  const navigation = useNavigation();
+
+  // Handler function for registration
+  const handleRegister = () => {
     setError("");
-    // Check if passwords match before registering
+
     if (Password !== ConfirmPassword) {
       setError("Passwords do not match");
       return;
     }
+
     createUserWithEmailAndPassword(auth, Email, Password)
       .then((userCredential) => {
         const user = userCredential.user;
+        return updateProfile(user, { displayName: name }).then(() => user);
+      })
+      .then((updatedUser) => {
+        setUser(updatedUser);
+        Alert.alert("Success", "Registered successfully");
         navigation.navigate("Loginpage");
-        // Alert
-        Alert.alert("Register", "Register successfully");
       })
       .catch((error) => {
         console.log(error);
         setError(error.message);
       });
-  };
-
-  // Navigation to Loginscreen
-  const navigation = useNavigation();
-  const Loginscreen = () => {
-    navigation.navigate("Loginpage");
   };
 
   // Fonts
@@ -58,38 +69,43 @@ const Registerscreen = () => {
     );
   }
 
-  
- 
-
   return (
     <SafeAreaView style={styles.maincontainer}>
       <View>
         <Text style={styles.title}>Create Account</Text>
         <View style={styles.container}>
-
           {/* Name */}
           <Text style={styles.header}>Name:</Text>
           <View style={styles.passwordContainer}>
-          <TextInput placeholder="Name" selectionColor="grey" style={styles.textinput} />
+            <TextInput
+              value={name} // Binding state to the TextInput
+              onChangeText={setName}
+              placeholder="Name"
+              selectionColor="grey"
+              style={styles.textinput}
+            />
           </View>
 
           {/* Email */}
           <Text style={styles.header}>Email:</Text>
           <View style={styles.passwordContainer}>
-          <TextInput
-            onChangeText={setEmail}
-            placeholder="Email"
-            selectionColor="grey"
-            style={styles.textinput}
-          />
+            <TextInput
+              value={Email} // Binding state to the TextInput
+              onChangeText={setEmail}
+              placeholder="Email"
+              selectionColor="grey"
+              style={styles.textinput}
+            />
           </View>
+
           {/* Password */}
           <Text style={styles.header}>Password:</Text>
           <View style={styles.passwordContainer}>
             <TextInput
+              value={Password} // Binding state to the TextInput
               onChangeText={setPassword}
               placeholder="Password"
-              secureTextEntry={!showPassword} // Conditionally show/hide password
+              secureTextEntry={!showPassword}
               selectionColor="grey"
               style={styles.textinput}
             />
@@ -100,13 +116,15 @@ const Registerscreen = () => {
               <Text style={styles.showPasswordText}>{showPassword ? "Hide" : "Show"}</Text>
             </TouchableOpacity>
           </View>
+
           {/* Confirm Password */}
           <Text style={styles.header}>Confirm Password:</Text>
           <View style={styles.passwordContainer}>
             <TextInput
+              value={ConfirmPassword} // Binding state to the TextInput
               onChangeText={setConfirmPassword}
               placeholder="Confirm Password"
-              secureTextEntry={!showConfirmPassword} // Conditionally show/hide confirm password
+              secureTextEntry={!showConfirmPassword}
               selectionColor="grey"
               style={styles.textinput}
             />
@@ -120,24 +138,30 @@ const Registerscreen = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <TouchableOpacity style={styles.btn} onPress={Handler}>
+
+        <TouchableOpacity style={styles.btn} onPress={handleRegister}>
           <Text style={{ color: "#3F372E", fontSize: 16, fontFamily: "Reggae" }}>Register</Text>
         </TouchableOpacity>
+
         {Error && <Text style={{ color: "red" }}>{Error}</Text>}
-        <TouchableOpacity style={{ marginLeft: 80, marginTop: 10 }} onPress={Loginscreen}>
-          <Text style={{ color: "white", fontSize: 17 }}>Already Have an Account ?</Text>
+
+        <TouchableOpacity style={{ marginLeft: 80, marginTop: 10 }} onPress={() => navigation.navigate("Loginpage")}>
+          <Text style={{ color: "white", fontSize: 17 }}>Already Have an Account?</Text>
         </TouchableOpacity>
+
         <View style={styles.separatorContainer}>
           <View style={styles.separatorLine} />
           <Text style={styles.separatorText}>OR</Text>
           <View style={styles.separatorLine} />
         </View>
+
         <TouchableOpacity style={styles.socialButton}>
           <View style={{ flexDirection: "row" }}>
             <Goggleicon />
             <Text style={styles.socialButtonText}>Sign in with Google</Text>
           </View>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.socialButton}>
           <View style={{ flexDirection: "row" }}>
             <Appleicon />
@@ -179,14 +203,13 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 16,
     fontFamily: "Rakkass",
-    marginTop:5
+    marginTop: 5,
   },
   btn: {
     width: "40%",
     height: 50,
     backgroundColor: "#EAD4B4",
     borderRadius: 40,
-    paddingLeft:10,
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 100,
@@ -235,7 +258,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderWidth: 1,
     fontFamily: "Rakkass",
-    paddingLeft:5,
+    paddingLeft: 5,
   },
   showPasswordButton: {
     position: "absolute",
