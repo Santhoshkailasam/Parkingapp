@@ -28,7 +28,7 @@ const Payment = () => {
     <SafeAreaView style={styles.mainContainer}>
       {/* Header Section */}
       <View style={styles.headerRow}>
-        <TouchableOpacity style={styles.roundButton} onPress={backnavigation}>
+        <TouchableOpacity style={styles.roundButton} onPress={()=>navigation.goBack()}>
           <Back />
         </TouchableOpacity>
         <Text style={styles.headerText}>Payment</Text>

@@ -12,7 +12,7 @@ const ProfileScreen = () => {
   const navigation=useNavigation();
 
   const Payment=()=>{
-    navigation.navigate("Payment");
+    navigation.navigate("Paymentpage");
   }
   // Switch state
   const [isEnabled, setIsEnabled] = useState(false);
@@ -58,7 +58,7 @@ const ProfileScreen = () => {
         <TouchableOpacity style={styles.subheader} key={index} 
         onPress={() => {
           if (item === "My Payment Methods") {
-            navigation.navigate("Payment"); 
+            navigation.navigate("Paymentpage"); 
           }
         }}>
           <Text style={styles.text}>{item}</Text>
