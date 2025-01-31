@@ -1,18 +1,21 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ActivityIndicator, Switch } from 'react-native';
-import { useState } from 'react';
-import Back from "../assets/icon/back.svg"; // Ensure this is the correct import for your SVG
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ActivityIndicator, Switch, Image } from 'react-native';
 import { useFonts } from 'expo-font';
-import RightTriangle from "../assets/icon/right triagle.svg"; // Correct the name of your import to match the actual file
-import Logout from "../assets/icon/Logout.svg"
+import Back from "../assets/icon/back.svg";
+import RightTriangle from "../assets/icon/right triagle.svg"; 
+import Logout from "../assets/icon/Logout.svg";
 import { useNavigation } from '@react-navigation/native';
 import auth from '../firebase service/firebaseAuth';
 import { signOut } from 'firebase/auth';
 import { Alert } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
+import Icon from 'react-native-vector-icons/FontAwesome';
 const ProfileScreen = () => {
   const user = auth.currentUser;
   //use navigation 
   const navigation=useNavigation();
+  //camera module
+  const [profileimage,setprofileimage]=useState(null);
 
   const Payment=()=>{
     navigation.navigate("Paymentpage");
@@ -35,7 +38,22 @@ const ProfileScreen = () => {
       </View>
     );
   }
-
+const SelectImage=()=>{
+  let options ={
+  mediaType:"photo",
+  quality: 1,  
+};
+launchImageLibrary(options, (response) => {
+  if (response.didCancel) {
+    console.log("User cancelled image picker");
+  } else if (response.error) {
+    console.log("Image Picker Error:", response.error);
+  } else {
+    const source = { uri: response.assets[0].uri };
+    setprofileimage(source);
+  }
+});
+};
   return (
     <SafeAreaView style={styles.maincontainer}>
       <View style={{ flexDirection: "row" }}>
@@ -44,16 +62,24 @@ const ProfileScreen = () => {
         </TouchableOpacity>
         <Text style={styles.header}>My profile</Text>
       </View>
-      <View style={styles.profileimg}></View>
+      <TouchableOpacity style={styles.profileImgContainer} onPress={SelectImage}>
+        <Image
+          source={profileimage || require("../assets/image/tcscarparking.jpeg")}
+          style={styles.profileImg}
+        />
+        <View style={styles.cameraIcon}>
+          <Icon name="camera" size={20} color="black" />
+        </View>
+      </TouchableOpacity>
       {user ? (
         <>
           <Text style={{ color: "white", textAlign: "center", fontFamily: "Reggae", marginTop: 10 }}>{user.displayName}</Text>
           <Text style={{ color: "white", textAlign: "center", fontFamily: "Reggae", marginTop: 10 }}>{user.email}</Text>
         </>
       ) : (
-        <Text style={styles.info}>User not logged in</Text>
+        <Text style={{ color: "white", textAlign: "center", fontFamily: "Reggae", marginTop: 10 }}>User not logged in</Text>
       )}
-      {/*  */}
+      {/* Switch */}
       <View style={styles.switchContainer}>
         <Switch
           trackColor={{ false: '#767577', true: '#81b0ff' }}  // Track color
@@ -176,7 +202,22 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     marginTop:12,
     borderRadius:50
-  }
+  },
+  profileImgContainer: { 
+    alignSelf: "center", 
+    marginTop: 10,
+    position: "relative" 
+  },
+  profileImg: { 
+    width: 100, 
+    height: 100, 
+    borderRadius: 50 },
+  cameraIcon: { position: "absolute", 
+    bottom: 0, 
+    right: 0, 
+    backgroundColor: "#fff", 
+    borderRadius: 15, 
+    padding: 5 },
 });
 
 export default ProfileScreen;
