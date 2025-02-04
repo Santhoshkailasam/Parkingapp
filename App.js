@@ -8,7 +8,7 @@ import Loginscreen from './source/Loginscreen';
 import Registerscreen from './source/Registerscreen';
 import FooterComponent from './component/footercomponent';
 import Payment from './source/Payments';
-import ProfileScreen from './source/ProfileScreen';
+import Forgetpassword from './source/forgetpasswordscreen';
 export default function App() {
   const [aspectRatio, setAspectRatio] = useState(
     Dimensions.get('window').height / Dimensions.get('window').width
@@ -33,10 +33,6 @@ export default function App() {
       <StatusBar hidden={false} />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen 
-            name="Profilescreen"  
-            component={(props) => <ProfileScreen{...props} aspectRatio={aspectRatio} />} 
-          />
           <Stack.Screen 
             name="Mainpage"  
             component={(props) => <Mainpage {...props} aspectRatio={aspectRatio} />} 
@@ -52,6 +48,10 @@ export default function App() {
           <Stack.Screen 
             name="Registerpage"  
             component={(props) => <Registerscreen {...props} aspectRatio={aspectRatio} />} 
+          />
+           <Stack.Screen 
+            name="Forgetpassword"  
+            component={(props) => <Forgetpassword {...props} aspectRatio={aspectRatio} />} 
           />
           <Stack.Screen 
             name="Footerpage"  

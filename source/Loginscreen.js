@@ -49,6 +49,9 @@ const Loginscreen = () => {
   const Registerscreen = () => {
     navigation.navigate("Registerpage");
   };
+  const Forgetpassword = () => {
+    navigation.navigate("Forgetpassword");
+  };
 
   return (
     <SafeAreaView style={styles.maincontainer}>
@@ -103,7 +106,7 @@ const Loginscreen = () => {
             ) : null}
 
         {/* Forget password */}
-        <TouchableOpacity style={{ marginLeft: 110, marginBottom: 20 }}>
+        <TouchableOpacity style={{ marginLeft: 110, marginBottom: 20 }}onPress={Forgetpassword}>
           <Text style={{ color: "white", fontSize: 17 }}>Forget Password</Text>
         </TouchableOpacity>
         

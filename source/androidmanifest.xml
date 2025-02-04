@@ -35,4 +35,8 @@
         </intent-filter>
       </activity>
     </application>
+    <application
+  android:requestLegacyExternalStorage="true"
+  ... >
+
 </manifest>
