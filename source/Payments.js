@@ -102,7 +102,7 @@ const Payment = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: "#3F372E",
+    backgroundColor: "#000000",
     paddingLeft: 15,
   },
   centeredContainer: {

@@ -18,7 +18,7 @@ const NearbyParking =()=>{
 }
 const styles=StyleSheet.create({
     maincontainer:{
-        backgroundColor:"#383128",
+        backgroundColor:"#000000",
         flex:1
     }
 })

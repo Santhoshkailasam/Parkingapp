@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   maincontainer: {
     flex: 1,
-    backgroundColor: "#3F372E",
+    backgroundColor: "#000000",
   },
   title: {
     fontSize: 24,

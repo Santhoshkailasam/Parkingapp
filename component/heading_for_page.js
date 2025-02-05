@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: width * 0.05, // 5% of the screen width
-    marginLeft: width * 0.1, // Margin as 10% of the screen width
+    marginLeft: width * 0.12, // Margin as 10% of the screen width
     marginTop: 10,
     fontWeight: "bold",
     color: "white",

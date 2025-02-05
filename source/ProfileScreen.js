@@ -19,11 +19,6 @@ const ProfileScreen = () => {
     Rakkas: require("../fonts/Rakkas-Regular.ttf")
   });
 
-  const navigation = useNavigation();
-  const user = auth.currentUser;  // Firebase auth
-
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
   // Loading screen while fonts are loading
   if (!fontsLoaded) {
     return (
@@ -32,6 +27,11 @@ const ProfileScreen = () => {
       </View>
     );
   }
+  //navigations
+  const navigation = useNavigation();
+  const user = auth.currentUser;  // Firebase auth
+
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   // Function for image picker
   const selectImage = () => {
@@ -174,7 +174,7 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   maincontainer: {
     flex: 1,
-    backgroundColor: "#3F372E",
+    backgroundColor: "#000000",
   },
   round: {
     backgroundColor: "#EAD4B4AB",

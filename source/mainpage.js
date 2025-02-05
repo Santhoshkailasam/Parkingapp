@@ -57,7 +57,7 @@ const Mainpage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "black",
+    backgroundColor: "#000000",
     flex: 1,
   },
   image: {
