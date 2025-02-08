@@ -43,7 +43,7 @@ const Bookingscreen = ({ navigation }) => {
       </View>
 
       {/* Horizontal ScrollView for Timeline */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.timelineContainer}>
+      <View style={styles.timelineContainer}>
         <Timeline time="1:00 AM" />
         <Timeline time="2:00 AM" />
         <Timeline time="3:00 AM" />
@@ -68,17 +68,11 @@ const Bookingscreen = ({ navigation }) => {
         <Timeline time="10:00 PM" />
         <Timeline time="11:00 PM" />
         <Timeline time="12:00 AM" />
-      </ScrollView>
-
-      {/* Circular Hours Picker */}
-      <View style={styles.outerCircle}>
-        <View style={styles.innerCircle}></View>
       </View>
-
-      {/* Next Button */}
+      {/* Next Button
       <TouchableOpacity style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Next</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };
@@ -126,22 +120,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 10,
   },
-  outerCircle: {
-    height: 330,
-    width: 330,
-    backgroundColor: 'white',
-    borderRadius: 165,
-    alignSelf: 'center',
-    marginTop: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  innerCircle: {
-    height: 230,
-    width: 230,
-    backgroundColor: 'red',
-    borderRadius: 115,
-  },
+
   nextButton: {
     backgroundColor: '#EAD4B4AB',
     borderRadius: 30,
@@ -155,6 +134,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Reggae',
     color: 'black',
   },
+  numbers:{
+    alignSelf: 'center',
+  }
 });
 
 export default Bookingscreen;
