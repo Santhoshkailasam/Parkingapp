@@ -21,13 +21,6 @@ const Circlecomponent = () => {
     })
   ).current;
 
-  // Calculate the active number at the top
-  const activeIndex = rotation.interpolate({
-    inputRange: [-360, 0, 360],
-    outputRange: [0, 0, numbers.length], // Convert rotation to active number index
-    extrapolate: 'clamp',
-  });
-
   return (
     <View style={styles.container}>
       {/* Outer Circle (Rotating) */}
@@ -40,11 +33,11 @@ const Circlecomponent = () => {
               {
                 rotate: rotation.interpolate({
                   inputRange: [-360, 360],
-                  outputRange: ['-360deg', '360deg'],
-                }),
-              },
-            ],
-          },
+                  outputRange: ['-360deg', '360deg']
+                })
+              }
+            ]
+          }
         ]}
       >
         {numbers.map((num, index) => {
@@ -59,20 +52,24 @@ const Circlecomponent = () => {
                 style={[
                   styles.circleNumber,
                   {
-                    color: activeIndex.interpolate({
-                      inputRange: [index - 0.5, index, index + 0.5],
+                    color: rotation.interpolate({
+                      inputRange: [
+                        (index - 0.5) * (360 / numbers.length),
+                        index * (360 / numbers.length),
+                        (index + 0.5) * (360 / numbers.length)
+                      ],
                       outputRange: ['black', 'red', 'black'],
-                      extrapolate: 'clamp',
+                      extrapolate: 'clamp'
                     }),
                     transform: [
                       {
                         rotate: rotation.interpolate({
                           inputRange: [-360, 360],
-                          outputRange: ['360deg', '-360deg'],
-                        }),
-                      },
-                    ],
-                  },
+                          outputRange: ['360deg', '-360deg']
+                        })
+                      }
+                    ]
+                  }
                 ]}
               >
                 {num}
@@ -110,7 +107,7 @@ const styles = StyleSheet.create({
     width: 200,
     backgroundColor: 'red',
     borderRadius: 100,
-    position: 'absolute', // Ensures it does not rotate
+    position: 'absolute',
   },
   circleNumber: {
     fontSize: 20,
@@ -123,7 +120,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '48%', // Center vertically
     transform: [{ translateY: -120 }], // Move it above the inner circle
-    right: "46%",
+    right: "45%",
   },
 });
 

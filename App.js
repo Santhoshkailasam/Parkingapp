@@ -11,6 +11,7 @@ import Payment from './source/Payments';
 import Forgetpassword from './source/forgetpasswordscreen';
 import Bookingscreen from './source/Booking screen';
 import Circlecomponent from './component/circle component';
+import Finalbooking from './source/FinalBooking';
 export default function App() {
   const [aspectRatio, setAspectRatio] = useState(
     Dimensions.get('window').height / Dimensions.get('window').width
@@ -36,8 +37,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen 
-            name="Circle"  
-            component={(props) => <Circlecomponent {...props} aspectRatio={aspectRatio} />} 
+            name="FinalBooking"  
+            component={(props) => <Finalbooking {...props} aspectRatio={aspectRatio} />} 
           />
         <Stack.Screen 
             name="Bookingscreen"  
