@@ -41,7 +41,7 @@ const Finalbooking =()=>{
             
             {/* Vehicle number */}
             <Text style={styles.subheader}>Vehicle Number</Text>
-            <TextInput style={styles.inputbox} placeholder="TN 01 AA XXXX" placeholderTextColor={"#4f4a46"} /><View>
+            <TextInput style={styles.inputbox} placeholder="TN 01 AA XXXX" placeholderTextColor={"#4f4a46"} maxLength={15} /><View>
 
             {/* Phone number */}
             <Text style={styles.subheader}>Phone Number</Text>
@@ -56,7 +56,20 @@ const Finalbooking =()=>{
                     <Picker.Item label="+44 (UK  🇬🇧)" value="+44" />
                 </Picker>
                 {/* phone number */}
-            <TextInput style={{fontSize:18,flex:1,position:"absolute",left:70}}  placeholder="983200XXXX" placeholderTextColor={"#4f4a46"} keyboardType="phone-pad" />
+            <TextInput 
+            style={
+            {
+                fontSize:18,
+                flex:1,
+                position:"absolute",
+                marginLeft:70,
+                color:"#FFFFFF",
+                width:120
+            }} 
+            placeholder="983200XXXX" 
+            placeholderTextColor={"#4f4a46"} 
+            keyboardType="phone-pad" maxLength={10}/>
+
             </View>
         </View>
        {/* Details */}
@@ -134,8 +147,10 @@ const styles=StyleSheet.create({
         marginTop:10,
         fontSize:18,
         alignItems:"center",
-        paddingLeft:50
-
+        paddingLeft:50,
+        color:"#FFFFFF",
+        overflow:"hidden"
+        
     },
     dropdownContainer: {
         flexDirection: "row",
@@ -147,7 +162,7 @@ const styles=StyleSheet.create({
         height: 60,
         marginLeft: 10,
         marginTop: 10,
-        backgroundColor: "#1E1E1E",
+        
     },
     picker: {
         width: "42%", 
