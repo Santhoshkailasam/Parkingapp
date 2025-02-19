@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import {View,StyleSheet,Text,SafeAreaView,TextInput,TouchableOpacity,Alert,} from "react-native";
 import { useFonts } from "expo-font";
 import { ActivityIndicator } from "react-native";
 import auth from "../firebase service/firebaseAuth";

@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  StyleSheet,
-  ActivityIndicator,
-  ScrollView,
-} from 'react-native';
+import {View,Text,TouchableOpacity,SafeAreaView,StyleSheet,ActivityIndicator,} from 'react-native';
 import { useFonts } from 'expo-font';
 import Back from '../assets/icon/back.svg';
 import Timeline from '../component/Timeline';
