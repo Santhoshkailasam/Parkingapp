@@ -7,7 +7,8 @@ const ParkingTicket  =()=>{
         // Load custom fonts
         const [fontsLoaded] = useFonts({
           Radley: require("../fonts/Radley-Regular.ttf"),
-          Songmyung: require("../fonts/SongMyung-Regular.ttf"),
+          Reggae: require("../fonts/ReggaeOne-Regular.ttf"),
+          Rakkas: require("../fonts/Rakkas-Regular.ttf"),
         });
       
         // Show loading indicator while fonts are loading
@@ -35,7 +36,7 @@ const ParkingTicket  =()=>{
               Scan this QR on the scanner machine while you are in parking 
            </Text>
            {/* Ticket Details */}
-        <View style={{flexDirection:"row",}}>
+        <View style={{flexDirection:"row",marginTop:20}}>
          <View>
            <View>
               <Text style={styles.header}>Name:</Text>
@@ -55,7 +56,7 @@ const ParkingTicket  =()=>{
            </View>
          </View>
          {/* Side details */}
-         <View style={{marginLeft:80}}>
+         <View style={{marginLeft:50}}>
            <View>
               <Text style={styles.header}>Vehicle Number:</Text>
               <Text style={styles.subheader}>TN 01 AA 2134</Text>
@@ -95,6 +96,7 @@ const styles=StyleSheet.create({
         marginTop: 20,
         alignSelf: "center",
         marginLeft: 30,
+        fontFamily:"Reggae"
       },
       headerRow: {
         flexDirection: "row",
@@ -113,7 +115,7 @@ const styles=StyleSheet.create({
       ticketcontainer:{
         backgroundColor:"#FFF",
         width:330,
-        height:500,
+        height:550,
         marginLeft:5,
         marginTop:30,
         borderRadius:30,
@@ -127,10 +129,13 @@ const styles=StyleSheet.create({
       },
       header:{
         marginLeft:10,
+        fontFamily:"Radley",
+        fontSize:16
       },
       subheader:{
         marginLeft:10,
-        fontWeight:"bold"
+        fontFamily:"Rakkas",
+        fontSize:16
       },
       button:{
         marginTop: 30,
@@ -144,6 +149,7 @@ const styles=StyleSheet.create({
         fontSize: 28,
         marginTop: 10,
         textAlign: "center",
+        fontFamily:"Reggae"
       }
 
 })
