@@ -1,16 +1,53 @@
-import React from 'react';
-import {View,Text,TouchableOpacity,SafeAreaView,StyleSheet,ActivityIndicator,} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
 import { useFonts } from 'expo-font';
 import Back from '../assets/icon/back.svg';
 import Timeline from '../component/Timeline';
-import Circletimeline from '../component/circletimeline';
+
+const timeSlots = [
+  "1:00 AM", "2:00 AM", "3:00 AM", "4:00 AM", "5:00 AM", "6:00 AM",
+  "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM",
+  "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM",
+  "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM", "12:00 AM"
+];
+
+const LOOP_COUNT = 1000;
+const infiniteTimeSlots = Array(LOOP_COUNT).fill(timeSlots).flat();
+const ITEM_WIDTH = 100;
+
 const Bookingscreen = ({ navigation }) => {
   const [fontsLoaded] = useFonts({
     Reggae: require('../fonts/ReggaeOne-Regular.ttf'),
     Rakkas: require('../fonts/Rakkas-Regular.ttf'),
   });
 
-  // Loading screen while fonts are loading
+  const flatListRef = useRef(null);
+  const middleIndex = Math.floor(infiniteTimeSlots.length / 2);
+  const [selectedIndex, setSelectedIndex] = useState(middleIndex);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (flatListRef.current) {
+        flatListRef.current.scrollToIndex({ index: middleIndex, animated: false });
+      }
+    }, 100);
+  }, []);
+
+  const handleScroll = (event) => {
+    const scrollX = event.nativeEvent.contentOffset.x;
+    const newIndex = Math.round(scrollX / ITEM_WIDTH);
+
+    if (newIndex !== selectedIndex) {
+      setSelectedIndex(newIndex);
+    }
+
+    if (newIndex <= middleIndex - (timeSlots.length * 2)) {
+      flatListRef.current.scrollToIndex({ index: middleIndex, animated: false });
+    } else if (newIndex >= middleIndex + (timeSlots.length * 2)) {
+      flatListRef.current.scrollToIndex({ index: middleIndex, animated: false });
+    }
+  };
+
   if (!fontsLoaded) {
     return (
       <View style={styles.loadingContainer}>
@@ -21,7 +58,6 @@ const Bookingscreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      {/* Header with Back Button */}
       <View style={styles.headerContainer}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Back />
@@ -29,42 +65,25 @@ const Bookingscreen = ({ navigation }) => {
         <Text style={styles.headerText}>Tech Car Parking</Text>
       </View>
 
-      {/* Subtitle */}
-      <View>
-        <Text style={styles.subtitleText}>choose Time for Parking</Text>
-      </View>
-
-      {/* Horizontal ScrollView for Timeline */}
-      <View style={styles.timelineContainer}>
-        <Timeline time="1:00 AM" />
-        <Timeline time="2:00 AM" />
-        <Timeline time="3:00 AM" />
-        <Timeline time="4:00 AM" />
-        <Timeline time="5:00 AM" />
-        <Timeline time="6:00 AM" />
-        <Timeline time="7:00 AM" />
-        <Timeline time="8:00 AM" />
-        <Timeline time="9:00 AM" />
-        <Timeline time="10:00 AM" />
-        <Timeline time="11:00 AM" />
-        <Timeline time="12:00 PM" />
-        <Timeline time="1:00 PM" />
-        <Timeline time="2:00 PM" />
-        <Timeline time="3:00 PM" />
-        <Timeline time="4:00 PM" />
-        <Timeline time="5:00 PM" />
-        <Timeline time="6:00 PM" />
-        <Timeline time="7:00 PM" />
-        <Timeline time="8:00 PM" />
-        <Timeline time="9:00 PM" />
-        <Timeline time="10:00 PM" />
-        <Timeline time="11:00 PM" />
-        <Timeline time="12:00 AM" />
-      </View>
-      {/* Next Button
-      <TouchableOpacity style={styles.nextButton}>
-        <Text style={styles.nextButtonText}>Next</Text>
-      </TouchableOpacity> */}
+      <Text style={styles.subtitleText}>Choose Time for Parking</Text>
+      
+      <View style={styles.redIndicator}></View>
+      
+      <FlatList
+        ref={flatListRef}
+        data={infiniteTimeSlots}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.timelineContainer}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        renderItem={({ item, index }) => (
+          <Timeline time={item} isSelected={index === selectedIndex} />
+        )}
+        getItemLayout={(data, index) => ({ length: ITEM_WIDTH, offset: ITEM_WIDTH * index, index })}
+        initialScrollIndex={middleIndex}
+      />
     </SafeAreaView>
   );
 };
@@ -95,7 +114,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: 'Reggae',
     marginLeft: 20,
   },
@@ -107,27 +126,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   timelineContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 20,
     paddingHorizontal: 10,
   },
-
-  nextButton: {
-    backgroundColor: '#EAD4B4AB',
-    borderRadius: 30,
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    alignSelf: 'center',
+  redIndicator: {
     marginTop: 30,
-  },
-  nextButtonText: {
-    fontSize: 20,
-    fontFamily: 'Reggae',
-    color: 'black',
-  },
-  numbers:{
-    alignSelf: 'center',
+    width: 20,
+    height: 20,
+    backgroundColor: "red",
+    alignSelf:"center"
   }
 });
 
