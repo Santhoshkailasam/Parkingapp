@@ -39,7 +39,7 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen 
             name="Bookingscreen"  
-            component={(props) => <Bookingscreen {...props} aspectRatio={aspectRatio} />} 
+            component={(props) => <Finalbooking {...props} aspectRatio={aspectRatio} />} 
           />
           <Stack.Screen 
             name="Mainpage"  

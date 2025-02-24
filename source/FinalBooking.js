@@ -5,9 +5,13 @@ import { useNavigation } from "@react-navigation/native";
 import Back from "../assets/icon/back.svg";
 import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
+import { database, ref, push, set } from "../firebase service/firebaseconfig"
 const Finalbooking =()=>{
     const navigation=useNavigation()
     const [selectedValue, setSelectedValue] = useState("");
+    const [fullname,setfullname]=usestate("");
+    const [phonenumber,setphonenumber]=usestate("");
+    const [Vehiclenumber,setvehiclenumber]=usestate("");
     //fonts 
     const [fontsLoaded] = useFonts({
         Reggae: require("../fonts/ReggaeOne-Regular.ttf"),
