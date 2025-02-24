@@ -9,15 +9,58 @@ import { database, ref, push, set } from "../firebase service/firebaseconfig"
 const Finalbooking =()=>{
     const navigation=useNavigation()
     const [selectedValue, setSelectedValue] = useState("");
-    const [fullname,setfullname]=usestate("");
-    const [phonenumber,setphonenumber]=usestate("");
-    const [Vehiclenumber,setvehiclenumber]=usestate("");
+    const [fullname,setfullname]=useState("");
+    const [phonenumber,setphonenumber]=useState("");
+    const [vehiclenumber,setvehiclenumber]=useState("");
+
+    // Booking Details
+    const amountPerHour = 20;
+    const hoursBooked = 4;
+    const placeBooked = "2nd Floor-07";
+    const totalAmount = amountPerHour * hoursBooked;
+
+    //save function
+
+    const savedata=async()=>{
+        if(!fullname || !phonenumber || !vehiclenumber){
+            alert("Please fill the details");
+            return;
+        }
+    
+ 
+    // Bookingdata
+
+        navigation.navigate("Parkingticket",{
+        fullname,
+        vehiclenumber,
+        phonenumber,
+        countryCode: selectedValue,
+        amount: amountPerHour,
+        hours: hoursBooked,
+        placeBooked,
+        totalAmount,
+        bookingTime: "3.00 PM TO 4.00 PM",  
+    bookingDate: "26 Feb 2024" 
+    });
+
+
+    try {
+        // Generate a unique key for each booking
+        const newBookingRef = push(ref(database, "bookings"));
+        await set(newBookingRef, bookingData);
+        alert("Booking saved successfully!");
+    } catch (error) {
+        alert("Error saving booking");
+        console.error(error);
+    }
+}
     //fonts 
     const [fontsLoaded] = useFonts({
         Reggae: require("../fonts/ReggaeOne-Regular.ttf"),
         Songmyung: require("../fonts/SongMyung-Regular.ttf"),
         Rakkas: require("../fonts/Rakkas-Regular.ttf")
       });
+
       // Show loading indicator while fonts are loading
   if (!fontsLoaded) {
     return (
@@ -26,8 +69,8 @@ const Finalbooking =()=>{
       </View>
     );
   }
+
     return(
-        
      <SafeAreaView style={styles.mainContainer}>
         {/* Header */}
         <View style={styles.changetorow} >
@@ -40,15 +83,18 @@ const Finalbooking =()=>{
         {/* Forms */}
 
         {/* Name */}
-            <Text style={styles.subheader}>Full Name</Text>
-            <TextInput style={styles.inputbox} placeholder="Enter your Full Name" placeholderTextColor={"#4f4a46"} />
+            <Text style={styles.subheader}>fullName</Text>
+            <TextInput style={styles.inputbox} placeholder="Enter your Full Name" placeholderTextColor={"#4f4a46"} value={fullname} onChangeText={setfullname} />
             
             {/* Vehicle number */}
-            <Text style={styles.subheader}>Vehicle Number</Text>
-            <TextInput style={styles.inputbox} placeholder="TN 01 AA XXXX" placeholderTextColor={"#4f4a46"} maxLength={15} /><View>
+            <Text style={styles.subheader}>vehiclenumber</Text>
+            <TextInput style={styles.inputbox} placeholder="TN 01 AA XXXX" placeholderTextColor={"#4f4a46"} maxLength={15} 
+            value={vehiclenumber}
+            autoCapitalize="characters"
+            onChangeText={(text) => setvehiclenumber(text.toUpperCase())} /><View>
 
             {/* Phone number */}
-            <Text style={styles.subheader}>Phone Number</Text>
+            <Text style={styles.subheader}>phonenumber</Text>
             <View style={styles.dropdownContainer}>
                 {/* Dropdown (Picker) */}
                 <Picker
@@ -72,8 +118,10 @@ const Finalbooking =()=>{
             }} 
             placeholder="983200XXXX" 
             placeholderTextColor={"#4f4a46"} 
-            keyboardType="phone-pad" maxLength={10}/>
-
+            keyboardType="phone-pad" maxLength={10}
+            value={phonenumber}
+            onChangeText={setphonenumber}/>
+            
             </View>
         </View>
        {/* Details */}
@@ -81,27 +129,27 @@ const Finalbooking =()=>{
             <Text style={styles.detailsheader}>Amount</Text>
             <View style={[styles.changetorow,styles.detailstext,{justifyContent:'space-between',width:210}]}>
                 <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>₹/Hour</Text>
-                <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>₹20</Text>
+                <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>₹{amountPerHour}</Text>
             </View>
 
             <View style={[styles.changetorow,styles.detailstext,{justifyContent:'space-between',width:240}]}>
                <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>Hour</Text>
-               <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>4 Hour</Text>
+               <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>{hoursBooked} Hour</Text>
             </View>
 
             <View style={[styles.changetorow,styles.detailstext,{justifyContent:'space-between',width:285}]}>
                 <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>Place Booked</Text>
-                <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>2nd Floor-07</Text>
+                <Text style={[styles.detailsfont,{fontFamily:"Songmyung"}]}>{placeBooked}</Text>
             </View>
 
             <View style={{backgroundColor:"#000000",height:1,marginTop:20}}></View>
 
             <View style={[styles.changetorow,styles.detailstext,{justifyContent:'space-between',width:220}]}>
                 <Text style={[styles.detailsfont,{fontFamily:"Rakkas"}]}>Total Amount</Text>
-                <Text style={[styles.detailsfont,{fontFamily:"Rakkas"}]}>₹80</Text>
+                <Text style={[styles.detailsfont,{fontFamily:"Rakkas"}]}>₹{totalAmount}</Text>
             </View>
 
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={savedata}>
                 <Text  style={[styles.btntext,{fontFamily:"Reggae"}]}>Next</Text>
             </TouchableOpacity>
            </View>

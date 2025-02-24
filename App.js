@@ -41,6 +41,10 @@ export default function App() {
             name="Bookingscreen"  
             component={(props) => <Finalbooking {...props} aspectRatio={aspectRatio} />} 
           />
+           <Stack.Screen 
+            name="Parkingticket"  
+            component={(props) => <ParkingTicket {...props} aspectRatio={aspectRatio} />} 
+          />
           <Stack.Screen 
             name="Mainpage"  
             component={(props) => <Mainpage {...props} aspectRatio={aspectRatio} />} 

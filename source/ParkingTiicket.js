@@ -4,7 +4,8 @@ import Back from "../assets/icon/back.svg";
 import { useFonts } from "expo-font";
 import QRCode from "react-native-qrcode-svg";
 
-const ParkingTicket = ({ navigation }) => {
+const ParkingTicket = ({ route, navigation }) => {
+  const { fullname, vehiclenumber, phonenumber, selectedValue, placeBooked, amountPerHour, hours, totalAmount, bookingTime, bookingDate } = route.params;
   // Load custom fonts
   const [fontsLoaded] = useFonts({
     Radley: require("../fonts/Radley-Regular.ttf"),
@@ -38,7 +39,7 @@ const ParkingTicket = ({ navigation }) => {
         <View style={styles.notchRight} />
 
         <View style={{ alignItems: "center" }}>
-          <QRCode value="https://your-qr-data.com" size={190} />
+          <QRCode value={`${fullname}, ${vehiclenumber}, ${placeBooked}`}  size={190} />
         </View>
         <Text style={styles.scanText}>
           Scan this QR on the scanner machine while you are in parking
@@ -49,19 +50,19 @@ const ParkingTicket = ({ navigation }) => {
           <View>
             <View>
               <Text style={styles.header}>Name:</Text>
-              <Text style={styles.subheader}>Abinesh M.L</Text>
+              <Text style={styles.subheader}>{fullname}</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <Text style={styles.header}>Parking Area:</Text>
-              <Text style={styles.subheader}>Tech Center</Text>
+              <Text style={styles.subheader}>{placeBooked}</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <Text style={styles.header}>Duration:</Text>
-              <Text style={styles.subheader}>4 Hours</Text>
+              <Text style={styles.subheader}>{hours}</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <Text style={styles.header}>Date:</Text>
-              <Text style={styles.subheader}>26 Feb 2024</Text>
+              <Text style={styles.subheader}>{bookingDate}</Text>
             </View>
           </View>
 
@@ -69,19 +70,19 @@ const ParkingTicket = ({ navigation }) => {
           <View style={{ marginLeft: 50 }}>
             <View>
               <Text style={styles.header}>Vehicle Number:</Text>
-              <Text style={styles.subheader}>TN 01 AA 2134</Text>
+              <Text style={styles.subheader}>{vehiclenumber}</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <Text style={styles.header}>Parking Slot:</Text>
-              <Text style={styles.subheader}>2nd floor 07</Text>
+              <Text style={styles.subheader}>{placeBooked}</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <Text style={styles.header}>Time:</Text>
-              <Text style={styles.subheader}>3.00 PM TO 4.00 PM</Text>
+              <Text style={styles.subheader}>{bookingTime}</Text>
             </View>
             <View style={{ marginTop: 20 }}>
               <Text style={styles.header}>Phone Number:</Text>
-              <Text style={styles.subheader}>9157867498</Text>
+              <Text style={styles.subheader}>{phonenumber}</Text>
             </View>
           </View>
         </View>
