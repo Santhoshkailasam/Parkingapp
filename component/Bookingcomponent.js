@@ -1,7 +1,13 @@
 import React from "react";
 import { Text,View,StyleSheet,TouchableOpacity,Image,SafeAreaView} from "react-native";
 import { useFonts } from "expo-font";
+import { useNavigation } from "@react-navigation/native";
 const Bookingcomponent = (props) =>{
+  //navigation
+  const navigation=useNavigation();
+  const bookingscreen=()=>{
+    navigation.navigate("Bookingscreen")
+  }
   //Import Require Fonts
     const [fontsLoaded] = useFonts({
         Radley: require("../fonts/Radley-Regular.ttf"),
@@ -33,7 +39,7 @@ const Bookingcomponent = (props) =>{
                     </View>
                   </View>
                    {/*Booking button */}
-                  <TouchableOpacity style={styles.button}>
+                  <TouchableOpacity style={styles.button} onPress={bookingscreen}>
                     <Text style={{fontFamily:"Radley"}}>Book Now</Text>
                   </TouchableOpacity>
                 </View>

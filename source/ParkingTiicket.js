@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 import QRCode from "react-native-qrcode-svg";
 
 const ParkingTicket = ({ route, navigation }) => {
-  const { fullname, vehiclenumber, phonenumber, selectedValue, placeBooked, amountPerHour, hours, totalAmount, bookingTime, bookingDate } = route.params;
+  const { fullname, vehiclenumber, phonenumber, placeBooked, hours, bookingTime, bookingDate } = route.params;
   // Load custom fonts
   const [fontsLoaded] = useFonts({
     Radley: require("../fonts/Radley-Regular.ttf"),

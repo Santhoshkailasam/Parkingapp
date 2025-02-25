@@ -7,11 +7,11 @@ import { Picker } from "@react-native-picker/picker";
 import { useState } from "react";
 import { database, ref, push, set } from "../firebase service/firebaseconfig"
 const Finalbooking =()=>{
-    const navigation=useNavigation()
+    const navigation = useNavigation();
     const [selectedValue, setSelectedValue] = useState("");
-    const [fullname,setfullname]=useState("");
-    const [phonenumber,setphonenumber]=useState("");
-    const [vehiclenumber,setvehiclenumber]=useState("");
+    const [fullname, setfullname] = useState("");
+    const [phonenumber, setphonenumber] = useState("");
+    const [vehiclenumber, setvehiclenumber] = useState("");
 
     // Booking Details
     const amountPerHour = 20;
@@ -19,41 +19,40 @@ const Finalbooking =()=>{
     const placeBooked = "2nd Floor-07";
     const totalAmount = amountPerHour * hoursBooked;
 
-    //save function
-
-    const savedata=async()=>{
-        if(!fullname || !phonenumber || !vehiclenumber){
+    // Save function
+    const savedata = async () => {
+        if (!fullname || !phonenumber || !vehiclenumber) {
             alert("Please fill the details");
             return;
         }
-    
- 
-    // Bookingdata
 
-        navigation.navigate("Parkingticket",{
-        fullname,
-        vehiclenumber,
-        phonenumber,
-        countryCode: selectedValue,
-        amount: amountPerHour,
-        hours: hoursBooked,
-        placeBooked,
-        totalAmount,
-        bookingTime: "3.00 PM TO 4.00 PM",  
-    bookingDate: "26 Feb 2024" 
-    });
+        // Booking data
+        const bookingData = {
+            fullname,
+            vehiclenumber,
+            phonenumber,
+            countryCode: selectedValue,
+            amount: amountPerHour,
+            hours: hoursBooked,
+            placeBooked,
+            totalAmount,
+            bookingTime: "3.00 PM TO 4.00 PM",  
+            bookingDate: "26 Feb 2024" 
+        };
+        
+        try {
+            // Generate a unique key for each booking
+            const newBookingRef = push(ref(database, "bookings"));
+            await set(newBookingRef, bookingData);
+            alert("Booking saved successfully!");
+            console.log("Booking Data Sent:", bookingData);
+            navigation.navigate("Parkingticket", bookingData);
+        } catch (error) {
+            alert("Error saving booking");
+            console.error(error);
+        }
+    };
 
-
-    try {
-        // Generate a unique key for each booking
-        const newBookingRef = push(ref(database, "bookings"));
-        await set(newBookingRef, bookingData);
-        alert("Booking saved successfully!");
-    } catch (error) {
-        alert("Error saving booking");
-        console.error(error);
-    }
-}
     //fonts 
     const [fontsLoaded] = useFonts({
         Reggae: require("../fonts/ReggaeOne-Regular.ttf"),

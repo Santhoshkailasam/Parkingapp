@@ -41,10 +41,6 @@ export default function App() {
             name="Bookingscreen"  
             component={(props) => <Finalbooking {...props} aspectRatio={aspectRatio} />} 
           />
-           <Stack.Screen 
-            name="Parkingticket"  
-            component={(props) => <ParkingTicket {...props} aspectRatio={aspectRatio} />} 
-          />
           <Stack.Screen 
             name="Mainpage"  
             component={(props) => <Mainpage {...props} aspectRatio={aspectRatio} />} 
@@ -69,9 +65,11 @@ export default function App() {
             name="Footerpage"  
             component={(props) => <FooterComponent {...props} aspectRatio={aspectRatio} />} 
           />
-          <Stack.Screen 
-            name="Paymentpage"  
-            component={(props) => <Payment {...props} aspectRatio={aspectRatio} />} 
+          
+          
+           <Stack.Screen 
+            name="Parkingticket"  
+            component={(props) => <ParkingTicket {...props} aspectRatio={aspectRatio} />} 
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -6,6 +6,8 @@ import Card from "../assets/image/Cash and Credit Card.svg";
 import RightTriangle from "../assets/icon/right triagle.svg";
 import { useNavigation } from "@react-navigation/native";
 const Payment = () => {
+  //navigation
+   const navigation=useNavigation();
   // Load custom fonts
   const [fontsLoaded] = useFonts({
     Radley: require("../fonts/Radley-Regular.ttf"),
@@ -20,9 +22,8 @@ const Payment = () => {
       </View>
     );
   }
- const navigation=useNavigation();
- const backnavigation=()=>{
-     navigation.navigate("Homepage")
+ const ticketpage=()=>{
+     navigation.navigate("Parkingticket")
  }
   return (
     <SafeAreaView style={styles.mainContainer}>
@@ -91,7 +92,7 @@ const Payment = () => {
       </TouchableOpacity>
 
       {/* Pay Button */}
-      <TouchableOpacity style={styles.payButton}>
+      <TouchableOpacity style={styles.payButton} onPress={ticketpage}>
         <Text style={styles.payButtonText}>Pay</Text>
       </TouchableOpacity>
     </SafeAreaView>
