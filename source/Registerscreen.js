@@ -6,7 +6,7 @@ import Appleicon from "../assets/icon/appleicon.svg";
 import { useNavigation } from "@react-navigation/native";
 import { createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from "firebase/auth";
 import auth from "../firebase service/firebaseAuth";
-
+import emailjs from '@emailjs/react-native';
 const Registerscreen = () => {
   // Register state
   const [name, setName] = useState("");
@@ -17,7 +17,7 @@ const Registerscreen = () => {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State to toggle confirm password visibility
   const [user, setUser] = useState(null);
-
+  
   // Authentication listener to update user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -52,6 +52,31 @@ const Registerscreen = () => {
         console.log(error);
         setError(error.message);
       });
+      //Email message
+        // Perform your registration logic here
+        // For example, validate inputs and store user data
+
+        // Define email parameters
+        const templateParams = {
+          user_name: name,
+          user_email: Email,
+          message: 'Welcome to Parking APP! Your registration was successful.',
+      };
+       // Send confirmation email
+       emailjs.send('service_8c49npq', 'template_oun410k', templateParams, {
+        publicKey: 'usOiCoUEmTAQ8kytT',
+        privateKey:'qJ2DQTW3KOqJV6vw68Hs2'
+    })
+    .then(response => {
+        console.log('Email sent successfully!', response.status, response.text);
+        Alert.alert('Success', 'Registration successful. A confirmation email has been sent.');
+    })
+    .catch(err => {
+        console.error('Failed to send email.', err);
+        Alert.alert('Registration successful, but failed to send confirmation email.');
+    });
+      // Navigate to another screen if needed
+
   };
 
   // Fonts

@@ -13,6 +13,8 @@ import Bookingscreen from './source/Booking screen';
 import Circlecomponent from './component/circle component';
 import Finalbooking from './source/FinalBooking';
 import ParkingTicket from './source/ParkingTiicket';
+import ProfileScreen from './source/ProfileScreen';
+import OtpScreen from './screens/otpscreen';
 export default function App() {
   const [aspectRatio, setAspectRatio] = useState(
     Dimensions.get('window').height / Dimensions.get('window').width
@@ -39,7 +41,7 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen 
             name="Bookingscreen"  
-            component={(props) => <Finalbooking {...props} aspectRatio={aspectRatio} />} 
+            component={(props) => <Registerscreen {...props} aspectRatio={aspectRatio} />} 
           />
           <Stack.Screen 
             name="Mainpage"  
@@ -53,10 +55,10 @@ export default function App() {
             name="Loginpage"  
             component={(props) => <Loginscreen {...props} aspectRatio={aspectRatio} />} 
           />
-          <Stack.Screen 
+          {/* <Stack.Screen 
             name="Registerpage"  
             component={(props) => <Registerscreen {...props} aspectRatio={aspectRatio} />} 
-          />
+          /> */}
            <Stack.Screen 
             name="Forgetpassword"  
             component={(props) => <Forgetpassword {...props} aspectRatio={aspectRatio} />} 

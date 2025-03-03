@@ -13,7 +13,8 @@ const Payment = () => {
     Radley: require("../fonts/Radley-Regular.ttf"),
     Songmyung: require("../fonts/SongMyung-Regular.ttf"),
   });
-
+  //pay visible
+  const [isPayVisible, setPayVisible] = useState(false);
   // Show loading indicator while fonts are loading
   if (!fontsLoaded) {
     return (
@@ -50,7 +51,7 @@ const Payment = () => {
       <View style={styles.headerBox}>
         <Text style={styles.sectionTitle}>Bank Account</Text>
       </View>
-      <TouchableOpacity style={styles.paymentOptionRow}>
+      <TouchableOpacity style={styles.paymentOptionRow}  onPress={() => setPayVisible(true)}>
         <View style={styles.paymentIconContainer}>
           <Image source={require("../assets/image/icici.png")} style={styles.bankImage} />
         </View>
@@ -65,7 +66,7 @@ const Payment = () => {
       <View style={styles.headerBox}>
         <Text style={styles.sectionTitle}>Credit Cards</Text>
       </View>
-      <TouchableOpacity style={styles.paymentOptionRow}>
+      <TouchableOpacity style={styles.paymentOptionRow}  onPress={() => setPayVisible(true)}>
         <View style={styles.paymentIconContainer}>
           <Image source={require("../assets/image/Visa.png")} style={styles.bankImage} />
         </View>
@@ -80,7 +81,7 @@ const Payment = () => {
       <View style={styles.headerBox}>
         <Text style={styles.sectionTitle}>UPI Methods</Text>
       </View>
-      <TouchableOpacity style={styles.paymentOptionRow}>
+      <TouchableOpacity style={styles.paymentOptionRow}  onPress={() => setPayVisible(true)}>
         <View style={styles.paymentIconContainer}>
           <Image source={require("../assets/image/Google Pay.png")} style={styles.bankImage} />
         </View>
