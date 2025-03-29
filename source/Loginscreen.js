@@ -21,7 +21,7 @@ const Loginscreen = () => {
     signInWithEmailAndPassword(auth, Email, Password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigation.navigate("Footerpage");
+        navigation.navigate("Map");
 
         // Show success alert
         Alert.alert("Log in", "Sign in successfully");
@@ -47,7 +47,7 @@ const Loginscreen = () => {
   }
 
   const Registerscreen = () => {
-    navigation.navigate("Registerpage");
+    navigation.navigate("Registerscreen");
   };
   const Forgetpassword = () => {
     navigation.navigate("Forgetpassword");

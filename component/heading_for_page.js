@@ -1,11 +1,7 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, Dimensions,SafeAreaView} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator, SafeAreaView, TextInput } from "react-native";
 import { useFonts } from "expo-font";
 import Search from "../assets/icon/search.svg";
-import { TextInput } from "react-native";
-
-// Get screen dimensions
-const { width, height } = Dimensions.get("window");
 
 const Headertextcomponent = () => {
   const [fontsLoaded] = useFonts({
@@ -31,9 +27,12 @@ const Headertextcomponent = () => {
       <View style={styles.searchbox}>
         <View style={{ flexDirection: "row" }}>
           <Search style={styles.searchsvg} />
-          <TextInput style={styles.searchText} placeholder="Search Parking"
-          placeholderTextColor={"#D0CBCB70"}
-          selectionColor={"#D0CBCB70"}></TextInput>
+          <TextInput 
+            style={styles.searchText} 
+            placeholder="Search Parking"
+            placeholderTextColor="#D0CBCB70"
+            selectionColor="#D0CBCB70" 
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -45,35 +44,31 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-    fontSize: width * 0.05, // 5% of the screen width
-    marginLeft: width * 0.12, // Margin as 10% of the screen width
+    fontSize: 18, 
+    marginLeft: 90, 
     marginTop: 10,
     fontWeight: "bold",
     color: "white",
     fontFamily: "Songmyung",
-    marginLeft:75
   },
   searchbox: {
     backgroundColor: "#D6D1CA52",
-    height: height * 0.07, // 7% of the screen height
-    width: width * 0.84, // 90% of the screen width
-    borderRadius: 50,
+    height: 50, // Fixed height for search box
+    width: 300, // Fixed width for search box
+    borderRadius: 25,
     marginLeft: 15,
     marginTop: 30,
-    
   },
   searchsvg: {
-    marginLeft: width * 0.05, // 5% of the screen width,
-    marginTop:10
+    marginLeft: 20, // Fixed margin
+    marginTop: 10,
   },
   searchText: {
-    marginLeft: width * 0.1, // 10% of the screen width
-    fontSize: width * 0.05, // 5% of the screen width
-    height: height * 0.07, // 7% of the screen height
-    width: width * 0.84,
-    borderRadius: 50,
-    
-    
+    marginLeft: 20, // Fixed margin
+    fontSize: 16, // Fixed font size
+    height: 50, // Same as search box height
+    width: 250, // Adjusted to fit the search box
+    borderRadius: 25,
   },
 });
 

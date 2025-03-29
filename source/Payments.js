@@ -5,6 +5,9 @@ import { useFonts } from "expo-font";
 import Card from "../assets/image/Cash and Credit Card.svg";
 import RightTriangle from "../assets/icon/right triagle.svg";
 import { useNavigation } from "@react-navigation/native";
+import { Linking } from 'react-native';
+import { useState } from "react";
+import ParkingTicket from "./ParkingTiicket";
 const Payment = () => {
   //navigation
    const navigation=useNavigation();
@@ -13,6 +16,12 @@ const Payment = () => {
     Radley: require("../fonts/Radley-Regular.ttf"),
     Songmyung: require("../fonts/SongMyung-Regular.ttf"),
   });
+
+  const openGooglePay = () => {
+    const upiUrl = "upi://pay?pa=receiver@upi&pn=ReceiverName&am=10&cu=INR";
+    Linking.openURL(upiUrl).catch((err) => console.error('Error opening URL: ', err));
+  };
+
   //pay visible
   const [isPayVisible, setPayVisible] = useState(false);
   // Show loading indicator while fonts are loading
@@ -81,19 +90,19 @@ const Payment = () => {
       <View style={styles.headerBox}>
         <Text style={styles.sectionTitle}>UPI Methods</Text>
       </View>
-      <TouchableOpacity style={styles.paymentOptionRow}  onPress={() => setPayVisible(true)}>
-        <View style={styles.paymentIconContainer}>
+      <TouchableOpacity style={styles.paymentOptionRow} >
+        <View style={styles.paymentIconContainer} onPress={openGooglePay}>
           <Image source={require("../assets/image/Google Pay.png")} style={styles.bankImage} />
         </View>
         <View>
           <Text style={styles.bankText}>3214***543</Text>
-          <Text style={styles.subText}>Gpay</Text>
+         <Text style={styles.subText}>Gpay</Text>
         </View>
         <RightTriangle style={styles.triangleIcon} />
       </TouchableOpacity>
 
       {/* Pay Button */}
-      <TouchableOpacity style={styles.payButton} onPress={ticketpage}>
+      <TouchableOpacity style={styles.payButton}  onPress={ParkingTicket}>
         <Text style={styles.payButtonText}>Pay</Text>
       </TouchableOpacity>
     </SafeAreaView>

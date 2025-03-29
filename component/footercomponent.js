@@ -2,12 +2,13 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Bookmark from "../assets/icon/Bookmark.svg";
+import User from "../assets/icon/user.svg";
 import Parking from "../assets/icon/Parking Sign.svg";
 import Home from "../assets/icon/Home 2.svg";
 import NearbyParking from "../source/parkingsaroundyou";
 import ProfileScreen from "../source/ProfileScreen";
-import Mapscreen from "../source/mapscreen";
+import ParkingScreen from "../source/ParkingScreen"; 
+
 
 const Tab = createBottomTabNavigator();
 const {width,height}=Dimensions.get("window")
@@ -22,7 +23,7 @@ const FooterComponent = () => {
           } else if (route.name === "Parking") {
             return <Parking width={size} height={size} fill={color} />;
           } else if (route.name === "Profile") {
-            return <Bookmark width={size} height={size} fill={color} />;
+            return <User width={100} height={40} fill={color} />;
           }
         },
         tabBarLabelStyle:styles.tabBarLabel,
@@ -32,7 +33,7 @@ const FooterComponent = () => {
       })}
     >
       <Tab.Screen name="Home" component={NearbyParking} />
-      <Tab.Screen name="Parking" component={Mapscreen} />
+      <Tab.Screen name="Parking" component={ParkingScreen } />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

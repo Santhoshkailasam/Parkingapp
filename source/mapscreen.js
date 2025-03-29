@@ -6,7 +6,10 @@ import Back from "../assets/icon/back.svg";
 const Mapscreen = () => {
   // Use for navigation
   const navigation = useNavigation();
-
+const [location, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
   // State to hold the dynamic marker details
   const [marker, setMarker] = useState(null);
 
@@ -49,7 +52,7 @@ const Mapscreen = () => {
     });
   };
  const markernextpage=()=>{
-  navigation.navigate("Main")
+  navigation.navigate("Footerpage")
  }
   return (
     <SafeAreaView style={styles.container}>
